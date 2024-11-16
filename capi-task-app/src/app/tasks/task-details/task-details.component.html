@@ -1,0 +1,62 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-4xl p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
+      Detalles de la Tarea
+    </h2>
+
+    <div class="space-y-6">
+      <!-- Nombre de la tarea -->
+      <div>
+        <h3 class="text-2xl font-semibold text-gray-800">{{ task?.nombre }}</h3>
+        <p class="text-sm text-gray-500">{{ task?.descripcion }}</p>
+      </div>
+
+      <!-- Prioridad -->
+      <div class="flex justify-between items-center">
+        <p class="text-lg font-semibold text-gray-700">Prioridad:</p>
+        <span
+          class="px-4 py-1 text-white rounded-full"
+          [ngClass]="{
+            'bg-red-500': task?.prioridad === 'alta',
+            'bg-yellow-500': task?.prioridad === 'media',
+            'bg-green-500': task?.prioridad === 'baja'
+          }"
+        >
+          {{ task?.prioridad | titlecase }}
+        </span>
+      </div>
+
+      <!-- Estado -->
+      <div class="flex justify-between items-center">
+        <p class="text-lg font-semibold text-gray-700">Estado:</p>
+        <span class="px-4 py-1 text-white rounded-full bg-blue-500">
+          {{ task?.estado | titlecase }}
+        </span>
+      </div>
+
+      <!-- Categoría -->
+      <div class="flex justify-between items-center">
+        <p class="text-lg font-semibold text-gray-700">Categoría:</p>
+        <span class="text-gray-600">{{ task?.categoria | titlecase }}</span>
+      </div>
+
+      <!-- Fecha límite -->
+      <div class="flex justify-between items-center">
+        <p class="text-lg font-semibold text-gray-700">Fecha límite:</p>
+        <span class="text-gray-600">{{
+          task?.fecha_limite | date : "dd/MM/yyyy"
+        }}</span>
+      </div>
+
+      <!-- Botón para regresar -->
+      <div class="mt-8 text-center">
+        <button
+          routerLink="/tasks"
+          class="w-full py-3 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none"
+        >
+          Volver a la lista de tareas
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

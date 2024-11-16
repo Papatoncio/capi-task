@@ -1,0 +1,57 @@
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-4xl p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">
+      Lista de Tareas
+    </h2>
+
+    <div class="space-y-4">
+      <div *ngFor="let task of tasks" class="p-4 border-b">
+        <h3 class="font-semibold text-lg">{{ task.titulo }}</h3>
+        <p>{{ task.descripcion }}</p>
+        <div class="flex justify-end space-x-4 mt-2">
+          <!-- Ver detalles de tarea -->
+          <button
+            (click)="viewDetails(task.id)"
+            class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none"
+          >
+            Ver detalles
+          </button>
+
+          <!-- Eliminar tarea -->
+          <button
+            (click)="deleteTask(task.id)"
+            class="px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none"
+          >
+            Eliminar
+          </button>
+
+          <!-- Editar tarea -->
+          <button
+            [routerLink]="['/tasks/create', task.id]"
+            class="px-4 py-2 text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none"
+          >
+            Editar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 flex justify-between">
+      <!-- Volver al Dashboard -->
+      <button
+        (click)="goBack()"
+        class="px-4 py-2 text-white bg-gray-600 rounded-md hover:bg-gray-700 focus:outline-none"
+      >
+        Volver al Dashboard
+      </button>
+
+      <!-- Crear nueva tarea -->
+      <button
+        routerLink="/tasks/create"
+        class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none"
+      >
+        Crear nueva tarea
+      </button>
+    </div>
+  </div>
+</div>

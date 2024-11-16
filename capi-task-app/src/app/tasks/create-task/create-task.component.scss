@@ -1,0 +1,15 @@
+.create-task-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.create-task-card {
+  width: 100%;
+  max-width: 600px;
+}
+
+.create-task-title {
+  text-align: center;
+}

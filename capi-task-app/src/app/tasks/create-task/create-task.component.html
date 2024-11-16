@@ -1,0 +1,97 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100 p-6">
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">
+      {{ taskId ? "Actualizar tarea" : "Crear nueva tarea" }}
+    </h2>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="titulo" class="block text-gray-600">Título</label>
+        <input
+          id="titulo"
+          type="text"
+          formControlName="titulo"
+          class="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Título"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="descripcion" class="block text-gray-600">Descripción</label>
+        <textarea
+          id="descripcion"
+          formControlName="descripcion"
+          rows="4"
+          class="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Descripción"
+        ></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="prioridad" class="block text-gray-600">Prioridad</label>
+        <select
+          id="prioridad"
+          formControlName="prioridad"
+          class="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="">Selecciona prioridad</option>
+          <option value="alta">Alta</option>
+          <option value="media">Media</option>
+          <option value="baja">Baja</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label for="categoria" class="block text-gray-600">Categoría</label>
+        <input
+          id="categoria"
+          type="text"
+          formControlName="categoria"
+          class="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Categoría"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="estado" class="block text-gray-600">Estado</label>
+        <select
+          id="estado"
+          formControlName="estado"
+          class="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="pendiente">Pendiente</option>
+          <option value="en progreso">En Progreso</option>
+          <option value="completada">Completada</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label for="fecha_limite" class="block text-gray-600"
+          >Fecha límite</label
+        >
+        <input
+          id="fecha_limite"
+          type="date"
+          formControlName="fecha_limite"
+          class="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="taskForm.invalid"
+        class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
+      >
+        {{ taskId ? "Actualizar tarea" : "Crear tarea" }}
+      </button>
+    </form>
+
+    <div class="mt-4 text-center">
+      <button
+        (click)="onCancel()"
+        class="text-sm text-gray-500 hover:underline"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">
+      Iniciar sesión
+    </h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="email" class="block text-gray-600"
+          >Correo electrónico</label
+        >
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Correo electrónico"
+        />
+        <!-- Mostrar error solo si el campo es inválido y ha sido tocado -->
+        <p
+          *ngIf="
+            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          "
+          class="text-red-500 text-sm"
+        >
+          Email inválido
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="block text-gray-600">Contraseña</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Contraseña"
+        />
+        <!-- Mostrar error solo si el campo es inválido y ha sido tocado -->
+        <p
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched
+          "
+          class="text-red-500 text-sm"
+        >
+          Contraseña inválida
+        </p>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
+      >
+        Ingresar
+      </button>
+
+      <div class="mt-4 text-center">
+        <a routerLink="/register" class="text-sm text-blue-500 hover:underline"
+          >¿No tienes cuenta? Crear cuenta</a
+        >
+        <br />
+        <a
+          routerLink="/forgot-password"
+          class="text-sm text-blue-500 hover:underline"
+          >¿Olvidaste tu contraseña?</a
+        >
+      </div>
+    </form>
+  </div>
+</div>
