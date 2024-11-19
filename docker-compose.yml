@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  capitask_db:
+    image: postgres:15
+    container_name: capitask_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: linux
+      POSTGRES_DB: capi_task
+    ports:
+      - "5000:5432"
+    volumes:
+      - capitask_db:/var/lib/postgresql/data
+    networks:
+      - capitask
+    restart: always
+
+  capitaskapi:
+    build:
+      context: ./capi-task-api
+      dockerfile: Dockerfile
+    container_name: capitaskapi
+    ports:
+      - "3000:3000"
+    networks:
+      - capitask
+    depends_on:
+      - capitask_db
+    restart: always
+
+  capitaskapp:
+    build:
+      context: ./capi-task-app
+      dockerfile: Dockerfile
+    container_name: capitaskapp
+    ports:
+      - "4200:80"
+    networks:
+      - capitask
+    depends_on:
+      - capitask_db
+      - capitaskapi
+    restart: always
+
+volumes:
+  capitask_db:
+
+networks:
+  capitask:
+    driver: bridge
