@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: linux
       POSTGRES_DB: capi_task
     ports:
-      - "5000:5432"
+      - "5100:5432"
     volumes:
       - capitask_db:/var/lib/postgresql/data
     networks:

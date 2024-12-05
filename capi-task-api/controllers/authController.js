@@ -14,11 +14,11 @@ const register = async (req, res) => {
     );
     res.json({ message: "Usuario registrado exitosamente" });
   } catch (error) {
-    res.status(500).json({ error: "Error al registrar el usuario" });
+    res.status(500).json({ error: "Error al registrar el usuario", msg: error });
   }
 };
 
-// Inicio de sesión
+// Inicio de sesiï¿½n
 const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -37,7 +37,7 @@ const login = async (req, res) => {
       res.status(401).json({ error: "Credenciales incorrectas" });
     }
   } catch (error) {
-    res.status(500).json({ error: "Error al iniciar sesión" });
+    res.status(500).json({ error: "Error al iniciar sesiï¿½n" });
   }
 };
 
